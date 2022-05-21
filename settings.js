@@ -77,19 +77,19 @@ global.prefa = ['','!','.','🐦','🐤','🗿']
 
 //—————「 Set Simbol 」—————//
 //terserah mai ubah atau nggak, note : tanda ' gausah di hapus!
-global.sp = '⭔'
+global.sp = '*››* '
 
 //—————「 Set Message 」—————//
 //terserah mau ubah apa nggak, note : tanda ' gausah di hapus!
 global.mess = {
-success: '_Done._',
-admin: '_Fitur Khusus Admin Group!_',
-botAdmin: '_Bot Harus Menjadi Admin Terlebih Dahulu!_',
-owner: '_Fitur Khusus Owner Bot_',
-group: '_Fitur Digunakan Hanya Untuk Group!_',
+success: '[ √ ] 𝚂𝚞𝚌𝚌𝚎𝚜𝚜...~',
+admin: '```-「 ADMIN GROUP ONLY 」-```',
+botAdmin: 'Maaf! Command ini khusus untuk Bot ketika jadi admin!!',
+owner: '```-「 OWNER BOT ONLY 」-```',
+group: 'Maaf! Command ini khusus untuk di dalam Group saja',
 private: '_Fitur Digunakan Hanya Untuk Private Chat!_',
 bot: '_Fitur Khusus Pengguna Nomor Bot_',
-wait: '_Sedang Di Proses_',
+wait: '_Wait A Minute 🍂, Your Request In Proccess_',
 error: '_Fitur Sedang Error!_',
 endLimit: '_Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12_',
 }
