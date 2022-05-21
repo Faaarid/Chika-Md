@@ -153,7 +153,7 @@ module.exports = chika = async (chika, m, chatUpdate, store) => {
 
         // Push Message To Console && Auto Read
         
-        }
+        
 	
 	// reset limit every 12 hours
         let cron = require('node-cron')
