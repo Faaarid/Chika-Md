@@ -152,7 +152,8 @@ module.exports = chika = async (chika, m, chatUpdate, store) => {
         }
 
         // Push Message To Console && Auto Read
-     
+        
+        }
 	
 	// reset limit every 12 hours
         let cron = require('node-cron')
@@ -886,7 +887,7 @@ case 'halah': case 'hilih': case 'huluh': case 'heleh': case 'holoh':
                if (!q) return reply(`Example : ${prefix + command} packname|author`)
           global.packname = text.split("|")[0]
           global.author = text.split("|")[1]
-          reply(`Exif berhasil diubah menjadi\n\n⭔ Packname : ${global.packname}\n⭔ Author : ${global.author}`)
+          reply(`Exif berhasil diubah menjadi\n\n*››*  Packname : ${global.packname}\n*››*  Author : ${global.author}`)
             }
             break
 	case 'kick': {
@@ -978,7 +979,7 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
  
  ➲ *Pesan : ${q ? q : 'kosong'}*\n\n`
                 for (let mem of participants) {
-                teks += `⭔ @${mem.id.split('@')[0]}\n`
+                teks += `*››*  @${mem.id.split('@')[0]}\n`
                 }
                 chika.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
                 }
@@ -998,7 +999,7 @@ let teks = `══✪〘 *👥 Tag All* 〙✪══
                 let anu = await styletext(text)
                 let teks = `Srtle Text From ${text}\n\n`
                 for (let i of anu) {
-                    teks += `⭔ *${i.name}* : ${i.result}\n\n`
+                    teks += `*››*  *${i.name}* : ${i.result}\n\n`
                 }
                 reply(teks)
 	    }
@@ -1347,8 +1348,8 @@ break
                     let read = i.readTimestamp
                     let unread = i.receiptTimestamp
                     let waktu = read ? read : unread
-                    teks += `⭔ @${i.userJid.split('@')[0]}\n`
-                    teks += ` ┗━⭔ *Waktu :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} ⭔ *Status :* ${read ? 'Dibaca' : 'Terkirim'}\n\n`
+                    teks += `*››*  @${i.userJid.split('@')[0]}\n`
+                    teks += ` ┗━*››*  *Waktu :* ${moment(waktu * 1000).format('DD/MM/YY HH:mm:ss')} *››*  *Status :* ${read ? 'Dibaca' : 'Terkirim'}\n\n`
                 }
                 chika.sendTextWithMentions(m.chat, teks, m)
             }
@@ -1383,7 +1384,7 @@ break
              case 'listonline': case 'liston': {
                     let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
                     let online = [...Object.keys(store.presences[id]), botNumber]
-                    chika.sendText(m.chat, 'List Online:\n\n' + online.map(v => '⭔ @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
+                    chika.sendText(m.chat, 'List Online:\n\n' + online.map(v => '*››*  @' + v.replace(/@.+/, '')).join`\n`, m, { mentions: online })
              }
              break
             case 'sticker': case 's': case 'stickergif': case 'sgif': {
@@ -1615,7 +1616,7 @@ break
                 let teks = 'YouTube Search\n\n Result From '+text+'\n\n'
                 let no = 1
                 for (let i of search.all) {
-                    teks += `⭔ No : ${no++}\n⭔ Type : ${i.type}\n⭔ Video ID : ${i.videoId}\n⭔ Title : ${i.title}\n⭔ Views : ${i.views}\n⭔ Duration : ${i.timestamp}\n⭔ Upload At : ${i.ago}\n⭔ Author : ${i.author.name}\n⭔ Url : ${i.url}\n\n─────────────────\n\n`
+                    teks += `*››*  No : ${no++}\n*››*  Type : ${i.type}\n*››*  Video ID : ${i.videoId}\n*››*  Title : ${i.title}\n*››*  Views : ${i.views}\n*››*  Duration : ${i.timestamp}\n*››*  Upload At : ${i.ago}\n*››*  Author : ${i.author.name}\n*››*  Url : ${i.url}\n\n─────────────────\n\n`
                 }
                 chika.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
             }
@@ -1627,9 +1628,9 @@ break
                 google({'query': text}).then(res => {
                 let teks = `Google Search From : ${text}\n\n`
                 for (let g of res) {
-                teks += `⭔ *Title* : ${g.title}\n`
-                teks += `⭔ *Description* : ${g.snippet}\n`
-                teks += `⭔ *Link* : ${g.link}\n\n────────────────────────\n\n`
+                teks += `*››*  *Title* : ${g.title}\n`
+                teks += `*››*  *Description* : ${g.snippet}\n`
+                teks += `*››*  *Link* : ${g.link}\n\n────────────────────────\n\n`
                 } 
                 reply(teks)
                 })
@@ -1671,16 +1672,16 @@ break
                 let buttonMessage = {
                     image: { url: anu.thumbnail },
                     caption: `
-⭔ Title : ${anu.title}
-⭔ Ext : Search
-⭔ ID : ${anu.videoId}
-⭔ Duration : ${anu.timestamp}
-⭔ Viewers : ${anu.views}
-⭔ Upload At : ${anu.ago}
-⭔ Author : ${anu.author.name}
-⭔ Channel : ${anu.author.url}
-⭔ Description : ${anu.description}
-⭔ Url : ${anu.url}`,
+*››*  Title : ${anu.title}
+*››*  Ext : Search
+*››*  ID : ${anu.videoId}
+*››*  Duration : ${anu.timestamp}
+*››*  Viewers : ${anu.views}
+*››*  Upload At : ${anu.ago}
+*››*  Author : ${anu.author.name}
+*››*  Channel : ${anu.author.url}
+*››*  Description : ${anu.description}
+*››*  Url : ${anu.url}`,
                     footer: ownername,
                     buttons: buttons,
                     headerType: 4
@@ -1694,7 +1695,7 @@ break
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(text, quality)
                 if (media.filesize >= 100000) return reply('File Melebihi Batas '+util.format(media))
-                chika.sendImage(m.chat, media.thumb, `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '128kbps'}`, m)
+                chika.sendImage(m.chat, media.thumb, `*››*  Title : ${media.title}\n*››*  File Size : ${media.filesizeF}\n*››*  Url : ${isUrl(text)}\n*››*  Ext : MP3\n*››*  Resolusi : ${args[1] || '128kbps'}`, m)
                 chika.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
             }
             break
@@ -1704,7 +1705,7 @@ break
                 let quality = args[1] ? args[1] : '360p'
                 let media = await ytv(text, quality)
                 if (media.filesize >= 100000) return reply('File Melebihi Batas '+util.format(media))
-                chika.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${isUrl(text)}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}` }, { quoted: m })
+                chika.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `*››*  Title : ${media.title}\n*››*  File Size : ${media.filesizeF}\n*››*  Url : ${isUrl(text)}\n*››*  Ext : MP3\n*››*  Resolusi : ${args[1] || '360p'}` }, { quoted: m })
             }
             break
 	    case 'getmusic': {
@@ -1717,7 +1718,7 @@ break
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(urls[text - 1], quality)
                 if (media.filesize >= 100000) return reply('File Melebihi Batas '+util.format(media))
-                chika.sendImage(m.chat, media.thumb, `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${urls[text - 1]}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '128kbps'}`, m)
+                chika.sendImage(m.chat, media.thumb, `*››*  Title : ${media.title}\n*››*  File Size : ${media.filesizeF}\n*››*  Url : ${urls[text - 1]}\n*››*  Ext : MP3\n*››*  Resolusi : ${args[1] || '128kbps'}`, m)
                 chika.sendMessage(m.chat, { audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
             }
             break
@@ -1731,7 +1732,7 @@ break
                 let quality = args[1] ? args[1] : '360p'
                 let media = await ytv(urls[text - 1], quality)
                 if (media.filesize >= 100000) return reply('File Melebihi Batas '+util.format(media))
-                chika.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `⭔ Title : ${media.title}\n⭔ File Size : ${media.filesizeF}\n⭔ Url : ${urls[text - 1]}\n⭔ Ext : MP3\n⭔ Resolusi : ${args[1] || '360p'}` }, { quoted: m })
+                chika.sendMessage(m.chat, { video: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title}.mp4`, caption: `*››*  Title : ${media.title}\n*››*  File Size : ${media.filesizeF}\n*››*  Url : ${urls[text - 1]}\n*››*  Ext : MP3\n*››*  Resolusi : ${args[1] || '360p'}` }, { quoted: m })
             }
             break
             case 'pinterest': {
@@ -1740,7 +1741,7 @@ break
 		        let { pinterest } = require('./lib/scraper')
                 anu = await pinterest(text)
                 result = anu[Math.floor(Math.random() * anu.length)]
-                chika.sendMessage(m.chat, { image: { url: result }, caption: '⭔ Media Url : '+result }, { quoted: m })
+                chika.sendMessage(m.chat, { image: { url: result }, caption: '*››*  Media Url : '+result }, { quoted: m })
             }
             break
 case 'webtonsearch': case 'webtoon':
@@ -1889,7 +1890,7 @@ case 'webtonsearch': case 'webtoon':
                 ]
                 let buttonMessage = {
                     image: { url: result.image },
-                    caption: `⭔ Title : ${result.title}\n⭔ Source : ${result.source}\n⭔ Media Url : ${result.image}`,
+                    caption: `*››*  Title : ${result.title}\n*››*  Source : ${result.source}\n*››*  Media Url : ${result.image}`,
                     footer: ownername,
                     buttons: buttons,
                     headerType: 4
@@ -1941,14 +1942,14 @@ case 'webtonsearch': case 'webtoon':
                 if (!Number(text)) reply(`Example : ${prefix + command} 6288292024190`)
                 let anu = await primbon.nomer_hoki(Number(text))
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nomor HP :* ${anu.message.nomer_hp}\n⭔ *Angka Shuzi :* ${anu.message.angka_shuzi}\n⭔ *Energi Positif :*\n- Kekayaan : ${anu.message.energi_positif.kekayaan}\n- Kesehatan : ${anu.message.energi_positif.kesehatan}\n- Cinta : ${anu.message.energi_positif.cinta}\n- Kestabilan : ${anu.message.energi_positif.kestabilan}\n- Persentase : ${anu.message.energi_positif.persentase}\n⭔ *Energi Negatif :*\n- Perselisihan : ${anu.message.energi_negatif.perselisihan}\n- Kehilangan : ${anu.message.energi_negatif.kehilangan}\n- Malapetaka : ${anu.message.energi_negatif.malapetaka}\n- Kehancuran : ${anu.message.energi_negatif.kehancuran}\n- Persentase : ${anu.message.energi_negatif.persentase}`, m)
+                chika.sendText(m.chat, `*››*  *Nomor HP :* ${anu.message.nomer_hp}\n*››*  *Angka Shuzi :* ${anu.message.angka_shuzi}\n*››*  *Energi Positif :*\n- Kekayaan : ${anu.message.energi_positif.kekayaan}\n- Kesehatan : ${anu.message.energi_positif.kesehatan}\n- Cinta : ${anu.message.energi_positif.cinta}\n- Kestabilan : ${anu.message.energi_positif.kestabilan}\n- Persentase : ${anu.message.energi_positif.persentase}\n*››*  *Energi Negatif :*\n- Perselisihan : ${anu.message.energi_negatif.perselisihan}\n- Kehilangan : ${anu.message.energi_negatif.kehilangan}\n- Malapetaka : ${anu.message.energi_negatif.malapetaka}\n- Kehancuran : ${anu.message.energi_negatif.kehancuran}\n- Persentase : ${anu.message.energi_negatif.persentase}`, m)
             }
             break
             case 'artimimpi': case 'tafsirmimpi': {
                 if (!q) return reply(`Example : ${prefix + command} belanja`)
                 let anu = await primbon.tafsir_mimpi(text)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Mimpi :* ${anu.message.mimpi}\n⭔ *Arti :* ${anu.message.arti}\n⭔ *Solusi :* ${anu.message.solusi}`, m)
+                chika.sendText(m.chat, `*››*  *Mimpi :* ${anu.message.mimpi}\n*››*  *Arti :* ${anu.message.arti}\n*››*  *Solusi :* ${anu.message.solusi}`, m)
             }
             break
             case 'ramalanjodoh': case 'ramaljodoh': {
@@ -1956,7 +1957,7 @@ case 'webtonsearch': case 'webtoon':
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_jodoh(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama Anda :* ${anu.message.nama_anda.nama}\n⭔ *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n⭔ *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Nama Anda :* ${anu.message.nama_anda.nama}\n*››*  *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n*››*  *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n*››*  *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n*››*  *Hasil :* ${anu.message.result}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'ramalanjodohbali': case 'ramaljodohbali': {
@@ -1964,7 +1965,7 @@ case 'webtonsearch': case 'webtoon':
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_jodoh_bali(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama Anda :* ${anu.message.nama_anda.nama}\n⭔ *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n⭔ *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Nama Anda :* ${anu.message.nama_anda.nama}\n*››*  *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n*››*  *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n*››*  *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n*››*  *Hasil :* ${anu.message.result}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'suamiistri': {
@@ -1972,7 +1973,7 @@ case 'webtonsearch': case 'webtoon':
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.suami_istri(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama Suami :* ${anu.message.suami.nama}\n⭔ *Lahir Suami :* ${anu.message.suami.tgl_lahir}\n⭔ *Nama Istri :* ${anu.message.istri.nama}\n⭔ *Lahir Istri :* ${anu.message.istri.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Nama Suami :* ${anu.message.suami.nama}\n*››*  *Lahir Suami :* ${anu.message.suami.tgl_lahir}\n*››*  *Nama Istri :* ${anu.message.istri.nama}\n*››*  *Lahir Istri :* ${anu.message.istri.tgl_lahir}\n*››*  *Hasil :* ${anu.message.result}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'ramalancinta': case 'ramalcinta': {
@@ -1980,14 +1981,14 @@ case 'webtonsearch': case 'webtoon':
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_cinta(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama Anda :* ${anu.message.nama_anda.nama}\n⭔ *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n⭔ *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n⭔ *Sisi Positif :* ${anu.message.sisi_positif}\n⭔ *Sisi Negatif :* ${anu.message.sisi_negatif}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Nama Anda :* ${anu.message.nama_anda.nama}\n*››*  *Lahir Anda :* ${anu.message.nama_anda.tgl_lahir}\n*››*  *Nama Pasangan :* ${anu.message.nama_pasangan.nama}\n*››*  *Lahir Pasangan :* ${anu.message.nama_pasangan.tgl_lahir}\n*››*  *Sisi Positif :* ${anu.message.sisi_positif}\n*››*  *Sisi Negatif :* ${anu.message.sisi_negatif}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'artinama': {
                 if (!q) return reply(`Example : ${prefix + command} NamaCowo Ardianta`)
                 let anu = await primbon.arti_nama(text)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Arti :* ${anu.message.arti}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Nama :* ${anu.message.nama}\n*››*  *Arti :* ${anu.message.arti}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'kecocokannama': case 'cocoknama': {
@@ -1995,7 +1996,7 @@ case 'webtonsearch': case 'webtoon':
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.kecocokan_nama(nama, tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Life Path :* ${anu.message.life_path}\n⭔ *Destiny :* ${anu.message.destiny}\n⭔ *Destiny Desire :* ${anu.message.destiny_desire}\n⭔ *Personality :* ${anu.message.personality}\n⭔ *Persentase :* ${anu.message.persentase_kecocokan}`, m)
+                chika.sendText(m.chat, `*››*  *Nama :* ${anu.message.nama}\n*››*  *Lahir :* ${anu.message.tgl_lahir}\n*››*  *Life Path :* ${anu.message.life_path}\n*››*  *Destiny :* ${anu.message.destiny}\n*››*  *Destiny Desire :* ${anu.message.destiny_desire}\n*››*  *Personality :* ${anu.message.personality}\n*››*  *Persentase :* ${anu.message.persentase_kecocokan}`, m)
             }
             break
             case 'kecocokanpasangan': case 'cocokpasangan': case 'pasangan': {
@@ -2003,7 +2004,7 @@ case 'webtonsearch': case 'webtoon':
                 let [nama1, nama2] = text.split`|`
                 let anu = await primbon.kecocokan_nama_pasangan(nama1, nama2)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendImage(m.chat,  anu.message.gambar, `⭔ *Nama Anda :* ${anu.message.nama_anda}\n⭔ *Nama Pasangan :* ${anu.message.nama_pasangan}\n⭔ *Sisi Positif :* ${anu.message.sisi_positif}\n⭔ *Sisi Negatif :* ${anu.message.sisi_negatif}`, m)
+                chika.sendImage(m.chat,  anu.message.gambar, `*››*  *Nama Anda :* ${anu.message.nama_anda}\n*››*  *Nama Pasangan :* ${anu.message.nama_pasangan}\n*››*  *Sisi Positif :* ${anu.message.sisi_positif}\n*››*  *Sisi Negatif :* ${anu.message.sisi_negatif}`, m)
             }
             break
             case 'jadianpernikahan': case 'jadiannikah': {
@@ -2011,7 +2012,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.tanggal_jadian_pernikahan(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Tanggal Pernikahan :* ${anu.message.tanggal}\n⭔ *karakteristik :* ${anu.message.karakteristik}`, m)
+                chika.sendText(m.chat, `*››*  *Tanggal Pernikahan :* ${anu.message.tanggal}\n*››*  *karakteristik :* ${anu.message.karakteristik}`, m)
             }
             break
             case 'sifatusaha': {
@@ -2019,7 +2020,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_usaha_bisnis(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Lahir :* ${anu.message.hari_lahir}\n⭔ *Usaha :* ${anu.message.usaha}`, m)
+                chika.sendText(m.chat, `*››*  *Lahir :* ${anu.message.hari_lahir}\n*››*  *Usaha :* ${anu.message.usaha}`, m)
             }
             break
             case 'rejeki': case 'rezeki': {
@@ -2027,7 +2028,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.rejeki_hoki_weton(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Lahir :* ${anu.message.hari_lahir}\n⭔ *Rezeki :* ${anu.message.rejeki}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Lahir :* ${anu.message.hari_lahir}\n*››*  *Rezeki :* ${anu.message.rejeki}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'pekerjaan': case 'kerja': {
@@ -2035,7 +2036,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.pekerjaan_weton_lahir(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Lahir :* ${anu.message.hari_lahir}\n⭔ *Pekerjaan :* ${anu.message.pekerjaan}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Lahir :* ${anu.message.hari_lahir}\n*››*  *Pekerjaan :* ${anu.message.pekerjaan}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'ramalannasib': case 'ramalnasib': case 'nasib': {
@@ -2043,7 +2044,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.ramalan_nasib(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Analisa :* ${anu.message.analisa}\n⭔ *Angka Akar :* ${anu.message.angka_akar}\n⭔ *Sifat :* ${anu.message.sifat}\n⭔ *Elemen :* ${anu.message.elemen}\n⭔ *Angka Keberuntungan :* ${anu.message.angka_keberuntungan}`, m)
+                chika.sendText(m.chat, `*››*  *Analisa :* ${anu.message.analisa}\n*››*  *Angka Akar :* ${anu.message.angka_akar}\n*››*  *Sifat :* ${anu.message.sifat}\n*››*  *Elemen :* ${anu.message.elemen}\n*››*  *Angka Keberuntungan :* ${anu.message.angka_keberuntungan}`, m)
             }
             break
             case 'potensipenyakit': case 'penyakit': {
@@ -2051,7 +2052,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.cek_potensi_penyakit(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Analisa :* ${anu.message.analisa}\n⭔ *Sektor :* ${anu.message.sektor}\n⭔ *Elemen :* ${anu.message.elemen}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Analisa :* ${anu.message.analisa}\n*››*  *Sektor :* ${anu.message.sektor}\n*››*  *Elemen :* ${anu.message.elemen}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'artitarot': case 'tarot': {
@@ -2059,7 +2060,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.arti_kartu_tarot(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendImage(m.chat, anu.message.image, `⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Simbol Tarot :* ${anu.message.simbol_tarot}\n⭔ *Arti :* ${anu.message.arti}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendImage(m.chat, anu.message.image, `*››*  *Lahir :* ${anu.message.tgl_lahir}\n*››*  *Simbol Tarot :* ${anu.message.simbol_tarot}\n*››*  *Arti :* ${anu.message.arti}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'fengshui': {
@@ -2067,7 +2068,7 @@ case 'webtonsearch': case 'webtoon':
                 let [nama, gender, tahun] = text.split`,`
                 let anu = await primbon.perhitungan_feng_shui(nama, gender, tahun)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tahun_lahir}\n⭔ *Gender :* ${anu.message.jenis_kelamin}\n⭔ *Angka Kua :* ${anu.message.angka_kua}\n⭔ *Kelompok :* ${anu.message.kelompok}\n⭔ *Karakter :* ${anu.message.karakter}\n⭔ *Sektor Baik :* ${anu.message.sektor_baik}\n⭔ *Sektor Buruk :* ${anu.message.sektor_buruk}`, m)
+                chika.sendText(m.chat, `*››*  *Nama :* ${anu.message.nama}\n*››*  *Lahir :* ${anu.message.tahun_lahir}\n*››*  *Gender :* ${anu.message.jenis_kelamin}\n*››*  *Angka Kua :* ${anu.message.angka_kua}\n*››*  *Kelompok :* ${anu.message.kelompok}\n*››*  *Karakter :* ${anu.message.karakter}\n*››*  *Sektor Baik :* ${anu.message.sektor_baik}\n*››*  *Sektor Buruk :* ${anu.message.sektor_buruk}`, m)
             }
             break
             case 'haribaik': {
@@ -2075,7 +2076,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.petung_hari_baik(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Kala Tinantang :* ${anu.message.kala_tinantang}\n⭔ *Info :* ${anu.message.info}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Lahir :* ${anu.message.tgl_lahir}\n*››*  *Kala Tinantang :* ${anu.message.kala_tinantang}\n*››*  *Info :* ${anu.message.info}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'harisangar': case 'taliwangke': {
@@ -2083,7 +2084,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.hari_sangar_taliwangke(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Info :* ${anu.message.info}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Lahir :* ${anu.message.tgl_lahir}\n*››*  *Hasil :* ${anu.message.result}\n*››*  *Info :* ${anu.message.info}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'harinaas': case 'harisial': {
@@ -2091,7 +2092,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_hari_naas(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Hari Lahir :* ${anu.message.hari_lahir}\n⭔ *Tanggal Lahir :* ${anu.message.tgl_lahir}\n⭔ *Hari Naas :* ${anu.message.hari_naas}\n⭔ *Info :* ${anu.message.catatan}\n⭔ *Catatan :* ${anu.message.info}`, m)
+                chika.sendText(m.chat, `*››*  *Hari Lahir :* ${anu.message.hari_lahir}\n*››*  *Tanggal Lahir :* ${anu.message.tgl_lahir}\n*››*  *Hari Naas :* ${anu.message.hari_naas}\n*››*  *Info :* ${anu.message.catatan}\n*››*  *Catatan :* ${anu.message.info}`, m)
             }
             break
             case 'nagahari': case 'harinaga': {
@@ -2099,7 +2100,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.rahasia_naga_hari(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Hari Lahir :* ${anu.message.hari_lahir}\n⭔ *Tanggal Lahir :* ${anu.message.tgl_lahir}\n⭔ *Arah Naga Hari :* ${anu.message.arah_naga_hari}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Hari Lahir :* ${anu.message.hari_lahir}\n*››*  *Tanggal Lahir :* ${anu.message.tgl_lahir}\n*››*  *Arah Naga Hari :* ${anu.message.arah_naga_hari}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'arahrejeki': case 'arahrezeki': {
@@ -2107,7 +2108,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_arah_rejeki(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Hari Lahir :* ${anu.message.hari_lahir}\n⭔ *tanggal Lahir :* ${anu.message.tgl_lahir}\n⭔ *Arah Rezeki :* ${anu.message.arah_rejeki}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Hari Lahir :* ${anu.message.hari_lahir}\n*››*  *tanggal Lahir :* ${anu.message.tgl_lahir}\n*››*  *Arah Rezeki :* ${anu.message.arah_rejeki}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'peruntungan': {
@@ -2115,7 +2116,7 @@ case 'webtonsearch': case 'webtoon':
                 let [nama, tgl, bln, thn, untuk] = text.split`,`
                 let anu = await primbon.ramalan_peruntungan(nama, tgl, bln, thn, untuk)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Peruntungan Tahun :* ${anu.message.peruntungan_tahun}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Nama :* ${anu.message.nama}\n*››*  *Lahir :* ${anu.message.tgl_lahir}\n*››*  *Peruntungan Tahun :* ${anu.message.peruntungan_tahun}\n*››*  *Hasil :* ${anu.message.result}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'weton': case 'wetonjawa': {
@@ -2123,7 +2124,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.weton_jawa(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Tanggal :* ${anu.message.tanggal}\n⭔ *Jumlah Neptu :* ${anu.message.jumlah_neptu}\n⭔ *Watak Hari :* ${anu.message.watak_hari}\n⭔ *Naga Hari :* ${anu.message.naga_hari}\n⭔ *Jam Baik :* ${anu.message.jam_baik}\n⭔ *Watak Kelahiran :* ${anu.message.watak_kelahiran}`, m)
+                chika.sendText(m.chat, `*››*  *Tanggal :* ${anu.message.tanggal}\n*››*  *Jumlah Neptu :* ${anu.message.jumlah_neptu}\n*››*  *Watak Hari :* ${anu.message.watak_hari}\n*››*  *Naga Hari :* ${anu.message.naga_hari}\n*››*  *Jam Baik :* ${anu.message.jam_baik}\n*››*  *Watak Kelahiran :* ${anu.message.watak_kelahiran}`, m)
             }
             break
             case 'sifat': case 'karakter': {
@@ -2131,7 +2132,7 @@ case 'webtonsearch': case 'webtoon':
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_karakter_tanggal_lahir(nama, tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Garis Hidup :* ${anu.message.garis_hidup}`, m)
+                chika.sendText(m.chat, `*››*  *Nama :* ${anu.message.nama}\n*››*  *Lahir :* ${anu.message.tgl_lahir}\n*››*  *Garis Hidup :* ${anu.message.garis_hidup}`, m)
             }
             break
             case 'keberuntungan': {
@@ -2139,7 +2140,7 @@ case 'webtonsearch': case 'webtoon':
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.potensi_keberuntungan(nama, tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Nama :* ${anu.message.nama}\n⭔ *Lahir :* ${anu.message.tgl_lahir}\n⭔ *Hasil :* ${anu.message.result}`, m)
+                chika.sendText(m.chat, `*››*  *Nama :* ${anu.message.nama}\n*››*  *Lahir :* ${anu.message.tgl_lahir}\n*››*  *Hasil :* ${anu.message.result}`, m)
             }
             break
             case 'memancing': {
@@ -2147,7 +2148,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_memancing_ikan(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Tanggal :* ${anu.message.tgl_memancing}\n⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Tanggal :* ${anu.message.tgl_memancing}\n*››*  *Hasil :* ${anu.message.result}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'masasubur': {
@@ -2155,7 +2156,7 @@ case 'webtonsearch': case 'webtoon':
                 let [tgl, bln, thn, siklus] = text.split`,`
                 let anu = await primbon.masa_subur(tgl, bln, thn, siklus)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Hasil :* ${anu.message.result}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Hasil :* ${anu.message.result}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'zodiak': case 'zodiac': {
@@ -2190,14 +2191,14 @@ case 'webtonsearch': case 'webtoon':
                 
                 let anu = await primbon.zodiak(zodiac)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Zodiak :* ${anu.message.zodiak}\n⭔ *Nomor :* ${anu.message.nomor_keberuntungan}\n⭔ *Aroma :* ${anu.message.aroma_keberuntungan}\n⭔ *Planet :* ${anu.message.planet_yang_mengitari}\n⭔ *Bunga :* ${anu.message.bunga_keberuntungan}\n⭔ *Warna :* ${anu.message.warna_keberuntungan}\n⭔ *Batu :* ${anu.message.batu_keberuntungan}\n⭔ *Elemen :* ${anu.message.elemen_keberuntungan}\n⭔ *Pasangan Zodiak :* ${anu.message.pasangan_zodiak}\n⭔ *Catatan :* ${anu.message.catatan}`, m)
+                chika.sendText(m.chat, `*››*  *Zodiak :* ${anu.message.zodiak}\n*››*  *Nomor :* ${anu.message.nomor_keberuntungan}\n*››*  *Aroma :* ${anu.message.aroma_keberuntungan}\n*››*  *Planet :* ${anu.message.planet_yang_mengitari}\n*››*  *Bunga :* ${anu.message.bunga_keberuntungan}\n*››*  *Warna :* ${anu.message.warna_keberuntungan}\n*››*  *Batu :* ${anu.message.batu_keberuntungan}\n*››*  *Elemen :* ${anu.message.elemen_keberuntungan}\n*››*  *Pasangan Zodiak :* ${anu.message.pasangan_zodiak}\n*››*  *Catatan :* ${anu.message.catatan}`, m)
             }
             break
             case 'shio': {
                 if (!q) return reply(`Example : ${prefix + command} tikus\n\nNote : For Detail https://primbon.com/shio.htm`)
                 let anu = await primbon.shio(text)
                 if (anu.status == false) return reply(anu.message)
-                chika.sendText(m.chat, `⭔ *Hasil :* ${anu.message}`, m)
+                chika.sendText(m.chat, `*››*  *Hasil :* ${anu.message}`, m)
             }
             break
 case 'cerpen':{
@@ -2205,7 +2206,7 @@ if (!q) return reply('Judul cerpen yang tersedia lihat di list *CERPEN MENU*')
 reply(mess.wait)
 let cerpe = await cerpen(q)
 var riych = await getBuffer(picak+`Cerpen ${q}`)
-await chika.send5ButImg(from, `⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`, `© ${ownername}`,riych, [{"urlButton": {"displayText": "Github","url": `${youtube}`}}] )
+await chika.send5ButImg(from, `*››*  _*Title :*_ ${cerpe.title}\n*››*  _*Author :*_ ${cerpe.author}\n*››*  _*Category :*_ ${cerpe.kategori}\n*››*  _*Pass Moderation :*_ ${cerpe.lolos}\n*››*  _*Story :*_\n${cerpe.cerita}`, `© ${ownername}`,riych, [{"urlButton": {"displayText": "Github","url": `${youtube}`}}] )
 }
 break
 case 'fajar-news':
@@ -2532,13 +2533,13 @@ break
                     if (!id) throw `No Query username, Example : ${prefix + command} ig cak_haho`
                     let { result: anu } = await fetchJson(api('zenz', '/api/stalker/ig', { username: id }, 'apikey'))
                     if (anu.status == false) return reply(anu.result.message)
-                    chika.sendMedia(m.chat, anu.caption.profile_hd, '', `⭔ Full Name : ${anu.caption.full_name}\n⭔ User Name : ${anu.caption.user_name}\n⭔ ID ${anu.caption.user_id}\n⭔ Followers : ${anu.caption.followers}\n⭔ Following : ${anu.caption.following}\n⭔ Bussines : ${anu.caption.bussines}\n⭔ Profesional : ${anu.caption.profesional}\n⭔ Verified : ${anu.caption.verified}\n⭔ Private : ${anu.caption.private}\n⭔ Bio : ${anu.caption.biography}\n⭔ Bio Url : ${anu.caption.bio_url}`, m)
+                    chika.sendMedia(m.chat, anu.caption.profile_hd, '', `*››*  Full Name : ${anu.caption.full_name}\n*››*  User Name : ${anu.caption.user_name}\n*››*  ID ${anu.caption.user_id}\n*››*  Followers : ${anu.caption.followers}\n*››*  Following : ${anu.caption.following}\n*››*  Bussines : ${anu.caption.bussines}\n*››*  Profesional : ${anu.caption.profesional}\n*››*  Verified : ${anu.caption.verified}\n*››*  Private : ${anu.caption.private}\n*››*  Bio : ${anu.caption.biography}\n*››*  Bio Url : ${anu.caption.bio_url}`, m)
 		    db.data.users[m.sender].limit -= 1
                 } else if (type.toLowerCase() == 'npm') {
                     if (!id) throw `No Query username, Example : ${prefix + command} npm scrape-primbon`
                     let { result: anu } = await fetchJson(api('zenz', '/api/stalker/npm', { query: id }, 'apikey'))
                     if (anu.status == false) return reply(anu.result.message)
-                    reply(`⭔ Name : ${anu.name}\n⭔ Version : ${Object.keys(anu.versions)}\n⭔ Created : ${tanggal(anu.time.created)}\n⭔ Modified : ${tanggal(anu.time.modified)}\n⭔ Maintainers :\n ${anu.maintainers.map(v => `- ${v.name} : ${v.email}`).join('\n')}\n\n⭔ Description : ${anu.description}\n⭔ Homepage : ${anu.homepage}\n⭔ Keywords : ${anu.keywords}\n⭔ Author : ${anu.author.name}\n⭔ License : ${anu.license}\n⭔ Readme : ${anu.readme}`)
+                    reply(`*››*  Name : ${anu.name}\n*››*  Version : ${Object.keys(anu.versions)}\n*››*  Created : ${tanggal(anu.time.created)}\n*››*  Modified : ${tanggal(anu.time.modified)}\n*››*  Maintainers :\n ${anu.maintainers.map(v => `- ${v.name} : ${v.email}`).join('\n')}\n\n*››*  Description : ${anu.description}\n*››*  Homepage : ${anu.homepage}\n*››*  Keywords : ${anu.keywords}\n*››*  Author : ${anu.author.name}\n*››*  License : ${anu.license}\n*››*  Readme : ${anu.readme}`)
 		    db.data.users[m.sender].limit -= 1
                 } else {
                     reply(`Example : ${prefix +command} type id\n\nList Type :\n1. ff (Free Fire)\n2. ml (Mobile Legends)\n3. aov (Arena Of Valor)\n4. cod (Call Of Duty)\n5. pb (point Blank)\n6. ig (Instagram)\n7. npm (https://npmjs.com)`)
@@ -2624,7 +2625,7 @@ break
                 if (!text) throw 'No Query Title'
                 reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/joox', { query: text }, 'apikey'))
-                let msg = await chika.sendImage(m.chat, anu.result.img, `⭔ Title : ${anu.result.lagu}\n⭔ Album : ${anu.result.album}\n⭔ Singer : ${anu.result.penyanyi}\n⭔ Publish : ${anu.result.publish}\n⭔ Lirik :\n${anu.result.lirik.result}`, m)
+                let msg = await chika.sendImage(m.chat, anu.result.img, `*››*  Title : ${anu.result.lagu}\n*››*  Album : ${anu.result.album}\n*››*  Singer : ${anu.result.penyanyi}\n*››*  Publish : ${anu.result.publish}\n*››*  Lirik :\n${anu.result.lirik.result}`, m)
                 chika.sendMessage(m.chat, { audio: { url: anu.result.mp4aLink }, mimetype: 'audio/mpeg', fileName: anu.result.lagu+'.m4a' }, { quoted: msg })
             }
             break
@@ -2632,7 +2633,7 @@ break
                 if (!text) throw 'No Query Title'
                 reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/downloader/soundcloud', { url: isUrl(text)[0] }, 'apikey'))
-                let msg = await chika.sendImage(m.chat, anu.result.thumb, `⭔ Title : ${anu.result.title}\n⭔ Url : ${isUrl(text)[0]}`)
+                let msg = await chika.sendImage(m.chat, anu.result.thumb, `*››*  Title : ${anu.result.title}\n*››*  Url : ${isUrl(text)[0]}`)
                 chika.sendMessage(m.chat, { audio: { url: anu.result.url }, mimetype: 'audio/mpeg', fileName: anu.result.title+'.m4a' }, { quoted: msg })
             }
             break
@@ -2675,7 +2676,7 @@ break
                 if (!text) throw 'Masukkan Query Link!'
                 reply(mess.wait)
                 let anu = await fetchJson(api('zenz', '/api/downloader/facebook', { url: text }, 'apikey'))
-                chika.sendMessage(m.chat, { video: { url: anu.result.url }, caption: `⭔ Title : ${anu.result.title}`}, { quoted: m })
+                chika.sendMessage(m.chat, { video: { url: anu.result.url }, caption: `*››*  Title : ${anu.result.title}`}, { quoted: m })
             }
             break
 	        case 'pindl': case 'pinterestdl': {
@@ -2697,11 +2698,11 @@ break
 		    let buttonMessage = {
 		        image: { url: anu.author.profilePic },
 			caption: `
-⭔ Title : ${anu.title}
-⭔ Author : ${anu.author.name}
-⭔ Like : ${anu.like}
-⭔ Caption : ${anu.caption}
-⭔ Url : ${anu.media[0]}
+*››*  Title : ${anu.title}
+*››*  Author : ${anu.author.name}
+*››*  Like : ${anu.like}
+*››*  Caption : ${anu.caption}
+*››*  Url : ${anu.media[0]}
 Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan command ytmp3/ytmp4 dengan url diatas
 `,
 			footer: ownername,
@@ -2711,7 +2712,7 @@ Untuk Download Media Silahkan Klik salah satu Button dibawah ini atau masukkan c
 		    chika.sendMessage(m.chat, buttonMessage, { quoted: m })
 		} else if (anu.type == 'image') {
 		    anu.media.map(async (url) => {
-		        chika.sendMessage(m.chat, { image: { url }, caption: `⭔ Title : ${anu.title}\n⭔ Author : ${anu.author.name}\n⭔ Like : ${anu.like}\n⭔ Caption : ${anu.caption}` }, { quoted: m })
+		        chika.sendMessage(m.chat, { image: { url }, caption: `*››*  Title : ${anu.title}\n*››*  Author : ${anu.author.name}\n*››*  Like : ${anu.like}\n*››*  Caption : ${anu.caption}` }, { quoted: m })
 		    })
 		}
 	    }
@@ -3169,12 +3170,12 @@ case 'playstore': {
             if (!q) return reply(`Example : ${prefix + command} clash of clans`)
             reply(mess.wait)
             let res = await fetchJson(api('zenz', '/webzone/playstore', { query: text }, 'apikey'))
-            let teks = `⭔ Playstore Search From : ${text}\n\n`
+            let teks = `*››*  Playstore Search From : ${text}\n\n`
             for (let i of res.result) {
-            teks += `⭔ Name : ${i.name}\n`
-            teks += `⭔ Link : ${i.link}\n`
-            teks += `⭔ Developer : ${i.developer}\n`
-            teks += `⭔ Link Developer : ${i.link_dev}\n\n──────────────────────\n`
+            teks += `*››*  Name : ${i.name}\n`
+            teks += `*››*  Link : ${i.link}\n`
+            teks += `*››*  Developer : ${i.developer}\n`
+            teks += `*››*  Link Developer : ${i.link_dev}\n\n──────────────────────\n`
             }
             reply(teks)
             }
@@ -3184,20 +3185,20 @@ case 'playstore': {
             reply(mess.wait)
             let res = await fetchJson(api('zenz', '/webzone/gsmarena', { query: text }, 'apikey'))
             let { judul, rilis, thumb, ukuran, type, storage, display, inchi, pixel, videoPixel, ram, chipset, batrai, merek_batre, detail } = res.result
-let capt = `⭔ Title: ${judul}
-⭔ Realease: ${rilis}
-⭔ Size: ${ukuran}
-⭔ Type: ${type}
-⭔ Storage: ${storage}
-⭔ Display: ${display}
-⭔ Inchi: ${inchi}
-⭔ Pixel: ${pixel}
-⭔ Video Pixel: ${videoPixel}
-⭔ Ram: ${ram}
-⭔ Chipset: ${chipset}
-⭔ Battery: ${batrai}
-⭔ Battery Brand: ${merek_batre}
-⭔ Detail: ${detail}`
+let capt = `*››*  Title: ${judul}
+*››*  Realease: ${rilis}
+*››*  Size: ${ukuran}
+*››*  Type: ${type}
+*››*  Storage: ${storage}
+*››*  Display: ${display}
+*››*  Inchi: ${inchi}
+*››*  Pixel: ${pixel}
+*››*  Video Pixel: ${videoPixel}
+*››*  Ram: ${ram}
+*››*  Chipset: ${chipset}
+*››*  Battery: ${batrai}
+*››*  Battery Brand: ${merek_batre}
+*››*  Detail: ${detail}`
             chika.sendImage(m.chat, thumb, capt, m)
             }
             break
@@ -3207,9 +3208,9 @@ let capt = `⭔ Title: ${judul}
             let res = await fetchJson(api('zenz', '/webzone/jadwalbioskop', { kota: text }, 'apikey'))
             let capt = `Jadwal Bioskop From : ${text}\n\n`
             for (let i of res.result){
-            capt += `⭔ Title: ${i.title}\n`
-            capt += `⭔ Thumbnail: ${i.thumb}\n`
-            capt += `⭔ Url: ${i.url}\n\n──────────────────────\n`
+            capt += `*››*  Title: ${i.title}\n`
+            capt += `*››*  Thumbnail: ${i.thumb}\n`
+            capt += `*››*  Url: ${i.url}\n\n──────────────────────\n`
             }
             chika.sendImage(m.chat, res.result[0].thumb, capt, m)
             }
@@ -3219,9 +3220,9 @@ let capt = `⭔ Title: ${judul}
             let res = await fetchJson(api('zenz', '/webzone/nowplayingbioskop', {}, 'apikey'))
             let capt = `Now Playing Bioskop\n\n`
             for (let i of res.result){
-            capt += `⭔ Title: ${i.title}\n`
-            capt += `⭔ Url: ${i.url}\n`
-            capt += `⭔ Img Url: ${i.img}\n\n──────────────────────\n`
+            capt += `*››*  Title: ${i.title}\n`
+            capt += `*››*  Url: ${i.url}\n`
+            capt += `*››*  Img Url: ${i.img}\n\n──────────────────────\n`
             }
             chika.sendImage(m.chat, res.result[0].img, capt, m)
             }
@@ -3232,11 +3233,11 @@ let capt = `⭔ Title: ${judul}
             let res = await fetchJson(api('zenz', '/webzone/amino', { query: text }, 'apikey'))
             let capt = `Amino Search From : ${text}\n\n`
             for (let i of res.result){
-            capt += `⭔ Community: ${i.community}\n`
-            capt += `⭔ Community Link: ${i.community_link}\n`
-            capt += `⭔ Thumbnail: ${i.community_thumb}\n`
-            capt += `⭔ Description: ${i.community_desc}\n`
-            capt += `⭔ Member Count: ${i.member_count}\n\n──────────────────────\n`
+            capt += `*››*  Community: ${i.community}\n`
+            capt += `*››*  Community Link: ${i.community_link}\n`
+            capt += `*››*  Thumbnail: ${i.community_thumb}\n`
+            capt += `*››*  Description: ${i.community_desc}\n`
+            capt += `*››*  Member Count: ${i.member_count}\n\n──────────────────────\n`
             }
             chika.sendImage(m.chat, 'https://'+res.result[0].community_thumb, capt, m)
             }
@@ -3247,12 +3248,12 @@ let capt = `⭔ Title: ${judul}
             let res = await fetchJson(api('zenz', '/webzone/wattpad', { query: text }, 'apikey'))
             let { judul, dibaca, divote, bab, waktu, url, thumb, description } = res.result[0]
             let capt = `Wattpad From query\n\n`
-            capt += `⭔ Judul: ${judul}\n`
-            capt += `⭔ Dibaca: ${dibaca}\n`
-            capt += `⭔ Divote: ${divote}\n`
-            capt += `⭔ Bab: ${bab}\n`
-            capt += `⭔ Url: ${url}\n`
-            capt += `⭔ Deskripsi: ${description}`
+            capt += `*››*  Judul: ${judul}\n`
+            capt += `*››*  Dibaca: ${dibaca}\n`
+            capt += `*››*  Divote: ${divote}\n`
+            capt += `*››*  Bab: ${bab}\n`
+            capt += `*››*  Url: ${url}\n`
+            capt += `*››*  Deskripsi: ${description}`
             chika.sendImage(m.chat, thumb, capt, m)
             }
             break
@@ -3262,11 +3263,11 @@ let capt = `⭔ Title: ${judul}
             let res = await fetchJson(api('zenz', '/webzone/webtoons', { query: text }, 'apikey'))
             let capt = `Webtoons Search From : ${text}\n\n`
             for (let i of res.result) {
-            capt += `⭔ Judul: ${i.judul}\n`
-            capt += `⭔ Like: ${i.like}\n`
-            capt += `⭔ Creator: ${i.creator}\n`
-            capt += `⭔ Genre: ${i.genre}\n`
-            capt += `⭔ Url: ${i.url}\n\n──────────────────────\n`
+            capt += `*››*  Judul: ${i.judul}\n`
+            capt += `*››*  Like: ${i.like}\n`
+            capt += `*››*  Creator: ${i.creator}\n`
+            capt += `*››*  Genre: ${i.genre}\n`
+            capt += `*››*  Url: ${i.url}\n\n──────────────────────\n`
             }
             reply(capt)
             }
@@ -3277,11 +3278,11 @@ let capt = `⭔ Title: ${judul}
             let res = await fetchJson(api('zenz', '/webzone/drakor', { query: text }, 'apikey'))
             let capt = `Drakor Search From : ${text}\n\n`
             for (let i of res.result) {
-            capt += `⭔ Judul: ${i.judul}\n`
-            capt += `⭔ Years: ${i.years}\n`
-            capt += `⭔ Genre: ${i.genre}\n`
-            capt += `⭔ Url: ${i.url}\n`
-            capt += `⭔ Thumbnail Url: ${i.thumbnail}\n\n──────────────────────\n`
+            capt += `*››*  Judul: ${i.judul}\n`
+            capt += `*››*  Years: ${i.years}\n`
+            capt += `*››*  Genre: ${i.genre}\n`
+            capt += `*››*  Url: ${i.url}\n`
+            capt += `*››*  Thumbnail Url: ${i.thumbnail}\n\n──────────────────────\n`
             }
             chika.sendImage(m.chat, res.result[0].thumbnail, capt, m)
             }
